@@ -56,8 +56,8 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md ${
-        showShadow ? 'shadow-md' : 'shadow-none'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-white/95 shadow-md' : 'bg-transparent'
       }`}
       style={{
         backgroundColor: navOpacity === 0 ? 'transparent' : `rgba(255, 255, 255, ${navOpacity})`
@@ -67,9 +67,14 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-20">
           <button
             onClick={() => scrollToSection('start')}
-            className="text-xl font-bold text-primary hover:text-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md"
+            className="group relative font-black text-primary transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md text-2xl md:text-3xl"
           >
-            TeleDesign
+            <span
+              className="inline-block bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent drop-shadow-[0_6px_14px_rgba(1,67,164,0.25)] transition-transform duration-300 group-hover:scale-105 group-active:scale-95"
+              style={{ textShadow: '0 8px 16px rgba(1, 67, 164, 0.25)' }}
+            >
+              TeleDesign
+            </span>
           </button>
 
           <div className="hidden md:flex items-center space-x-3">
