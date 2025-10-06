@@ -53,12 +53,13 @@ const Navigation = () => {
 
   const navOpacity = Math.min(scrollPosition / 160, 1);
   const showShadow = scrollPosition > 40;
+  const navBackgroundClass = navOpacity > 0 ? 'backdrop-blur-md' : '';
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         showShadow ? 'shadow-md' : 'shadow-none'
-      }`}
+      } ${navBackgroundClass}`}
       style={{
         backgroundColor: navOpacity === 0 ? 'transparent' : `rgba(255, 255, 255, ${navOpacity})`
       }}
@@ -67,7 +68,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-20">
           <button
             onClick={() => scrollToSection('start')}
-            className="text-xl font-bold text-primary hover:text-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md"
+            className="text-2xl md:text-3xl font-extrabold tracking-tight text-primary hover:text-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md drop-shadow-[0_6px_14px_rgba(1,67,164,0.35)]"
           >
             TeleDesign
           </button>
