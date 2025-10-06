@@ -1,13 +1,20 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
+let supabase: SupabaseClient | null = null;
+
+if (supabaseUrl && supabaseAnonKey) {
+  supabase = createClient(supabaseUrl, supabaseAnonKey);
+} else if (import.meta.env.DEV) {
+  console.warn(
+    'Supabase environment variables are not configured. Contact form submissions will be disabled.'
+  );
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export { supabase };
+export const isSupabaseConfigured = Boolean(supabase);
 
 export interface ContactSubmission {
   full_name: string;
