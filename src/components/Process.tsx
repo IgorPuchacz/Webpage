@@ -1,5 +1,5 @@
+import type { LucideIcon } from 'lucide-react';
 import { Search, Map, Ligature as FileSignature, FileCheck } from 'lucide-react';
-import { Video as LucideIcon } from 'lucide-react';
 
 interface ProcessStepProps {
   number: number;

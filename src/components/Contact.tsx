@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Mail, Phone, Clock, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
-import { supabase, ContactSubmission } from '../lib/supabase';
+import { supabase, isSupabaseConfigured, ContactSubmission } from '../lib/supabase';
 
 const Contact = () => {
   const [formData, setFormData] = useState<ContactSubmission>({
@@ -15,6 +15,7 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errors, setErrors] = useState<Partial<Record<keyof ContactSubmission, string>>>({});
+  const isSupabaseAvailable = isSupabaseConfigured && supabase !== null;
 
   const validateForm = (): boolean => {
     const newErrors: Partial<Record<keyof ContactSubmission, string>> = {};
@@ -45,6 +46,12 @@ const Contact = () => {
     e.preventDefault();
 
     if (!validateForm()) {
+      return;
+    }
+
+    if (!supabase) {
+      console.error('Supabase client is not configured. Skipping submission.');
+      setSubmitStatus('error');
       return;
     }
 
@@ -109,6 +116,12 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
             <form onSubmit={handleSubmit} className="space-y-6">
+              {!isSupabaseAvailable && (
+                <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+                  Formularz kontaktowy jest chwilowo niedostępny z powodu braku konfiguracji zaplecza. Skontaktuj się z nami
+                  telefonicznie lub mailowo.
+                </div>
+              )}
               <div>
                 <label htmlFor="full_name" className="block text-sm font-medium text-neutral-darker mb-2">
                   Imię i nazwisko *
@@ -240,7 +253,7 @@ const Contact = () => {
 
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !isSupabaseAvailable}
                 className="w-full inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-primary hover:bg-primary-dark transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
               >
                 {isSubmitting ? (

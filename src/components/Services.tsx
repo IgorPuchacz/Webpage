@@ -1,5 +1,5 @@
+import type { LucideIcon } from 'lucide-react';
 import { Network, Radio, FileCheck, FileText, Calculator, Eye } from 'lucide-react';
-import { Video as LucideIcon } from 'lucide-react';
 
 interface ServiceCardProps {
   icon: LucideIcon;
