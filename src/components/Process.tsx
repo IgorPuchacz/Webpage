@@ -60,7 +60,7 @@ const Process = () => {
   ];
 
   return (
-    <section id="proces" className="py-20 md:py-28 bg-surface-light">
+    <section id="proces" className="py-20 md:py-28 bg-surface-contrast">
       <div className="max-w-content mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-neutral-darker mb-4">

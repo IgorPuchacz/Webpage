@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .hero-grid {
+    @apply bg-surface-contrast;
+    background-image: linear-gradient(
+        rgba(1, 67, 164, 0.08) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        rgba(1, 67, 164, 0.08) 1px,
+        transparent 1px
+      );
+    background-size: 60px 60px;
+  }
+}
