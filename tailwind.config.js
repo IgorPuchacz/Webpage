@@ -12,6 +12,8 @@ export default {
         surface: {
           light: '#FCFDFF',
           lighter: '#DEE5EB',
+          muted: '#EEF2FA',
+          contrast: '#E1E9F5',
         },
         neutral: {
           dark: '#3A383B',

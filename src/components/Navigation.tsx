@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('start');
 
@@ -17,14 +17,15 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScroll = window.scrollY;
+      setScrollPosition(currentScroll);
 
       const sections = navItems.map(item => document.getElementById(item.id));
-      const scrollPosition = window.scrollY + 100;
+      const scrollOffset = currentScroll + 100;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
+        if (section && section.offsetTop <= scrollOffset) {
           setActiveSection(navItems[i].id);
           break;
         }
@@ -50,11 +51,17 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const navOpacity = Math.min(scrollPosition / 160, 1);
+  const showShadow = scrollPosition > 40;
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'bg-white/95 shadow-md' : 'bg-transparent'
       }`}
+      style={{
+        backgroundColor: navOpacity === 0 ? 'transparent' : `rgba(255, 255, 255, ${navOpacity})`
+      }}
     >
       <div className="max-w-content mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -70,15 +77,15 @@ const Navigation = () => {
             </span>
           </button>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-3">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md px-2 py-1 ${
+                className={`px-4 py-2 text-sm font-medium rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                   activeSection === item.id
-                    ? 'text-primary'
-                    : 'text-neutral-dark hover:text-primary'
+                    ? 'bg-primary text-white shadow-sm'
+                    : 'text-neutral-dark hover:text-primary hover:bg-primary/10'
                 }`}
               >
                 {item.label}
@@ -97,16 +104,16 @@ const Navigation = () => {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-surface-lighter">
+        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-surface-lighter">
           <div className="px-6 py-4 space-y-3">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary ${
+                className={`block w-full text-left px-4 py-2 rounded-full text-base font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary ${
                   activeSection === item.id
-                    ? 'text-primary bg-surface-light'
-                    : 'text-neutral-dark hover:text-primary hover:bg-surface-light'
+                    ? 'bg-primary text-white shadow-sm'
+                    : 'text-neutral-dark hover:text-primary hover:bg-primary/10'
                 }`}
               >
                 {item.label}

@@ -2,7 +2,7 @@ import { Award, Users, Target } from 'lucide-react';
 
 const About = () => {
   return (
-    <section id="o-nas" className="py-20 md:py-28 bg-surface-light">
+    <section id="o-nas" className="py-20 md:py-28 bg-surface-muted">
       <div className="max-w-content mx-auto px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
