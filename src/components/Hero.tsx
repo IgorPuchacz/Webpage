@@ -83,8 +83,15 @@ const Hero = () => {
   };
 
   return (
-    <section id="start" className="pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-b from-surface-light to-white">
-      <div className="max-w-content mx-auto px-6 lg:px-8">
+    <section
+      id="start"
+      className="hero-grid relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/0 via-white/40 to-white"
+      />
+      <div className="relative z-10 max-w-content mx-auto px-6 lg:px-8">
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-darker leading-tight mb-6">
             Projektujemy sieci telekomunikacyjne
