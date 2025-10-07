@@ -35,6 +35,7 @@ export default {
       animation: {
         'count-up': 'countUp 2s ease-out forwards',
         'fade-in': 'fadeIn 0.6s ease-out forwards',
+        'cta-glow': 'ctaGlow 3s ease-in-out infinite',
       },
       keyframes: {
         countUp: {
@@ -44,6 +45,14 @@ export default {
         fadeIn: {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        ctaGlow: {
+          '0%, 100%': {
+            boxShadow: '0 0 18px rgba(1, 67, 164, 0.35)',
+          },
+          '50%': {
+            boxShadow: '0 0 28px rgba(1, 86, 212, 0.55)',
+          },
         },
       },
     },

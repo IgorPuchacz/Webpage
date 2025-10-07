@@ -12,7 +12,7 @@ const Navigation = () => {
     { id: 'proces', label: 'Proces' },
     { id: 'realizacje', label: 'Realizacje' },
     { id: 'o-nas', label: 'O nas' },
-    { id: 'kontakt', label: 'Kontakt' },
+    { id: 'kontakt', label: 'Wyceń projekt', isCta: true },
   ];
 
   useEffect(() => {
@@ -70,7 +70,7 @@ const Navigation = () => {
             onClick={() => scrollToSection('start')}
             className="text-2xl md:text-3xl font-extrabold tracking-tight text-primary hover:text-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md drop-shadow-[0_6px_14px_rgba(1,67,164,0.35)]"
           >
-            TeleDesign
+            Control Project
           </button>
 
           <div className="hidden md:flex items-center space-x-3">
@@ -78,11 +78,15 @@ const Navigation = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`px-4 py-2 text-sm font-medium rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
-                  activeSection === item.id
-                    ? 'bg-primary text-white shadow-sm'
-                    : 'text-neutral-dark hover:text-primary hover:bg-primary/10'
-                }`}
+                className={
+                  item.isCta
+                    ? "relative overflow-hidden px-6 py-2.5 text-sm font-semibold rounded-full text-white bg-gradient-to-r from-primary via-primary-light to-primary-dark shadow-[0_0_18px_rgba(1,67,164,0.35)] hover:shadow-[0_0_32px_rgba(1,86,212,0.6)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 before:absolute before:inset-0 before:rounded-full before:bg-white/15 before:opacity-0 before:transition-opacity before:duration-300 before:content-[''] hover:before:opacity-40 animate-cta-glow"
+                    : `px-4 py-2 text-sm font-medium rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
+                        activeSection === item.id
+                          ? 'bg-primary text-white shadow-sm'
+                          : 'text-neutral-dark hover:text-primary hover:bg-primary/10'
+                      }`
+                }
               >
                 {item.label}
               </button>
@@ -106,11 +110,15 @@ const Navigation = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`block w-full text-left px-4 py-2 rounded-full text-base font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary ${
-                  activeSection === item.id
-                    ? 'bg-primary text-white shadow-sm'
-                    : 'text-neutral-dark hover:text-primary hover:bg-primary/10'
-                }`}
+                className={
+                  item.isCta
+                    ? "relative overflow-hidden block w-full text-left px-6 py-3 rounded-full text-base font-semibold text-white bg-gradient-to-r from-primary via-primary-light to-primary-dark shadow-[0_0_18px_rgba(1,67,164,0.35)] hover:shadow-[0_0_32px_rgba(1,86,212,0.6)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary before:absolute before:inset-0 before:rounded-full before:bg-white/15 before:opacity-0 before:transition-opacity before:duration-300 before:content-[''] hover:before:opacity-40 animate-cta-glow"
+                    : `block w-full text-left px-4 py-2 rounded-full text-base font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary ${
+                        activeSection === item.id
+                          ? 'bg-primary text-white shadow-sm'
+                          : 'text-neutral-dark hover:text-primary hover:bg-primary/10'
+                      }`
+                }
               >
                 {item.label}
               </button>
