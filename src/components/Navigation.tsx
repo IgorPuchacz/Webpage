@@ -70,7 +70,7 @@ const Navigation = () => {
             onClick={() => scrollToSection('start')}
             className="text-2xl md:text-3xl font-extrabold tracking-tight text-primary hover:text-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md drop-shadow-[0_6px_14px_rgba(1,67,164,0.35)]"
           >
-            TeleDesign
+            Control Project
           </button>
 
           <div className="hidden md:flex items-center space-x-3">

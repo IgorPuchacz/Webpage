@@ -119,7 +119,7 @@ const Hero = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pt-12 border-t border-surface-lighter">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pt-12">
             <AnimatedStat value={500} suffix="+" label="km zaprojektowanych sieci" />
             <AnimatedStat value={150} suffix="+" label="zrealizowanych projektów" />
             <AnimatedStat value={10} suffix="" label="lat doświadczenia" />
